@@ -1,0 +1,87 @@
+.page {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+  }
+  
+  .ship-card {
+    width: 100%;
+    max-width: 70vw;
+    position: relative;
+  }
+  
+  .title {
+    text-align: center;
+    margin: 0 0 1rem;
+  }
+  
+  .search-box {
+    width: 100%;
+  }
+  
+  .ship-header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;   
+    text-transform: none;
+  
+    .ship-name {
+      font-weight: 600;
+      color: black;
+    }
+  
+    .ship-imo {
+      opacity: 0.7;
+      font-size: 0.9rem;
+      color: black;
+    }
+  
+    .chevron {
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      color: black;
+    }
+  }
+  
+  mat-list-item {
+    display: flex;
+    justify-content: center;  
+    text-align: center;
+  
+    .voy {
+      white-space: nowrap;
+    }
+  
+    .arrow {
+      margin: 0 0.5rem;
+      opacity: 0.6;
+    }
+  }
+  
+  .spinner-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+  }
+  
+  .error {
+    color: #c62828;
+    margin-top: 1rem;
+    text-align: center;
+  }
+  
+  .empty {
+    text-align: center;
+    padding: 0.5rem;
+    opacity: 0.7;
+  }
+  .voyage-entry {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  

@@ -1,0 +1,33 @@
+<div class="page">
+  <mat-card class="detail-card mat-elevation-z8">
+    <h1 class="title">{{ ship?.name }}</h1>
+
+    <table class="detail-table" *ngIf="ship as s">
+      <tr><th>IMO Number</th>       <td>{{ s.imoNumber || '—' }}</td></tr>
+      <tr><th>Type</th>             <td>{{ s.shipType || '—' }}</td></tr>
+      <tr><th>Flag</th>             <td>{{ s.flagCountry || '—' }}</td></tr>
+      <tr><th>Owner</th>            <td>{{ s.owner || '—' }}</td></tr>
+      <tr><th>Operator</th>         <td>{{ s.operator || '—' }}</td></tr>
+      <tr><th>Year Built</th>       <td>{{ s.yearBuilt || '—' }}</td></tr>
+      <tr><th>Max Speed</th>        <td>{{ s.maxSpeed ?? '—' }} knots</td></tr>
+      <tr><th>Gross Tonnage</th>    <td>{{ s.grossTonnage ?? '—' }}</td></tr>
+      <tr><th>Deadweight</th>       <td>{{ s.deadweight ?? '—' }}</td></tr>
+      <tr><th>Length</th>           <td>{{ s.lengthMeters ?? '—' }} m</td></tr>
+      <tr><th>Beam</th>             <td>{{ s.beamMeters ?? '—' }} m</td></tr>
+      <tr><th>Draft</th>            <td>{{ s.draftMeters ?? '—' }} m</td></tr>
+      <tr><th>Last Seen</th>        <td>{{ s.lastSeenAt | date:'short' }}</td></tr>
+      <tr><th>Location</th>         <td>{{ s.lastKnownLat ?? '—' }}, {{ s.lastKnownLon ?? '—' }}</td></tr>
+    </table>
+
+    <div class="button-row">
+      <button mat-stroked-button routerLink="/ships" class="back-btn">
+        <mat-icon>arrow_back</mat-icon> Back
+      </button>
+    
+      <button mat-flat-button color="primary" [routerLink]="['/voyages']" [queryParams]="{ shipId: ship?.id }">
+        <mat-icon>explore</mat-icon> View Voyages
+      </button>
+    </div>
+    
+  </mat-card>
+</div>

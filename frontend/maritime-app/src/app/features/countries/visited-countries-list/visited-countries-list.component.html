@@ -1,0 +1,43 @@
+<div class="page">
+  <mat-card class="ship-card mat-elevation-z8">
+    <h1 class="title">Countries Visited by Ship (Last 12 Months)</h1>
+
+    <mat-form-field appearance="outline" class="search-box">
+      <mat-label>Search by ship name</mat-label>
+      <input matInput [(ngModel)]="search" placeholder="e.g. Poseidon" />
+    </mat-form-field>
+
+    <mat-accordion multi>
+      <mat-expansion-panel
+        *ngFor="let ship of filteredShips"
+        (opened)="fetchVisitedCountries(ship.id)"
+      >
+        <mat-expansion-panel-header>
+          <button mat-button class="ship-header">
+            <span class="ship-name">{{ ship.name }}</span>
+            <span class="ship-imo">| IMO: {{ ship.imoNumber || '—' }}</span>
+            <mat-icon class="chevron" svgIcon="expand_more"></mat-icon>
+          </button>
+        </mat-expansion-panel-header>
+
+        <ng-container *ngIf="visitedCountries[ship.id]; else loadingTpl">
+          <mat-list>
+            <mat-list-item *ngFor="let country of visitedCountries[ship.id]">
+             
+              <div class="voy">{{ country.countryName }} ({{ country.visitCount }} times)</div>
+            </mat-list-item>            
+          </mat-list>
+          <p *ngIf="!visitedCountries[ship.id].length" class="empty">No countries visited in the last year.</p>
+        </ng-container>
+
+        <ng-template #loadingTpl>
+          <div class="spinner-wrap" *ngIf="loading[ship.id]">
+            <mat-spinner diameter="32"></mat-spinner>
+          </div>
+        </ng-template>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <div *ngIf="error" class="error">{{ error }}</div>
+  </mat-card>
+</div>

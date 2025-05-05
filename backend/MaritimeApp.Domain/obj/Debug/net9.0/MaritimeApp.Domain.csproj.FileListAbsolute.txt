@@ -1,0 +1,12 @@
+D:\Jobs\NAPA group\backend\MaritimeApp.Domain\bin\Debug\net9.0\MaritimeApp.Domain.deps.json
+D:\Jobs\NAPA group\backend\MaritimeApp.Domain\bin\Debug\net9.0\MaritimeApp.Domain.dll
+D:\Jobs\NAPA group\backend\MaritimeApp.Domain\bin\Debug\net9.0\MaritimeApp.Domain.pdb
+D:\Jobs\NAPA group\backend\MaritimeApp.Domain\obj\Debug\net9.0\MaritimeApp.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\Jobs\NAPA group\backend\MaritimeApp.Domain\obj\Debug\net9.0\MaritimeApp.Domain.AssemblyInfoInputs.cache
+D:\Jobs\NAPA group\backend\MaritimeApp.Domain\obj\Debug\net9.0\MaritimeApp.Domain.AssemblyInfo.cs
+D:\Jobs\NAPA group\backend\MaritimeApp.Domain\obj\Debug\net9.0\MaritimeApp.Domain.csproj.CoreCompileInputs.cache
+D:\Jobs\NAPA group\backend\MaritimeApp.Domain\obj\Debug\net9.0\MaritimeApp.Domain.sourcelink.json
+D:\Jobs\NAPA group\backend\MaritimeApp.Domain\obj\Debug\net9.0\MaritimeApp.Domain.dll
+D:\Jobs\NAPA group\backend\MaritimeApp.Domain\obj\Debug\net9.0\refint\MaritimeApp.Domain.dll
+D:\Jobs\NAPA group\backend\MaritimeApp.Domain\obj\Debug\net9.0\MaritimeApp.Domain.pdb
+D:\Jobs\NAPA group\backend\MaritimeApp.Domain\obj\Debug\net9.0\ref\MaritimeApp.Domain.dll

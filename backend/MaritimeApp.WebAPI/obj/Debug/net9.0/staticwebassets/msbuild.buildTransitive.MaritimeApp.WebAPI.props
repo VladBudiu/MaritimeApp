@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\MaritimeApp.WebAPI.props" />
+</Project>

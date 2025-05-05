@@ -1,0 +1,95 @@
+<div class="page">
+  <mat-card class="form-card mat-elevation-z8">
+    <h1 class="title">{{ isEdit ? 'Edit Ship' : 'Add Ship' }}</h1>
+
+    <form class="form-grid" (ngSubmit)="onSubmit()">
+      <!-- COLUMN 1 -->
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="name" name="name" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>IMO Number</mat-label>
+        <input matInput [(ngModel)]="imoNumber" name="imoNumber" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Type</mat-label>
+        <input matInput [(ngModel)]="shipType" name="shipType" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Flag Country</mat-label>
+        <input matInput [(ngModel)]="flagCountry" name="flagCountry" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Owner</mat-label>
+        <input matInput [(ngModel)]="owner" name="owner" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Operator</mat-label>
+        <input matInput [(ngModel)]="operator" name="operator" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Year Built</mat-label>
+        <input matInput type="number" [(ngModel)]="yearBuilt" name="yearBuilt" />
+      </mat-form-field>
+
+      <!-- COLUMN 2 -->
+      <mat-form-field appearance="outline">
+        <mat-label>Max Speed (knots)</mat-label>
+        <input matInput type="number" [(ngModel)]="maxSpeed" name="maxSpeed" required/>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Gross Tonnage</mat-label>
+        <input matInput type="number" [(ngModel)]="grossTonnage" name="grossTonnage" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Deadweight</mat-label>
+        <input matInput type="number" [(ngModel)]="deadweight" name="deadweight" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Length (m)</mat-label>
+        <input matInput type="number" [(ngModel)]="lengthMeters" name="lengthMeters" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Beam (m)</mat-label>
+        <input matInput type="number" [(ngModel)]="beamMeters" name="beamMeters" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Draft (m)</mat-label>
+        <input matInput type="number" [(ngModel)]="draftMeters" name="draftMeters" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Last Known Latitude</mat-label>
+        <input matInput type="number" [(ngModel)]="lastKnownLat" name="last_known_lat" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Last Known Longitude</mat-label>
+        <input matInput type="number" [(ngModel)]="lastKnownLon" name="last_known_lon" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Last Seen (ISO date)</mat-label>
+        <input matInput type="datetime-local" [(ngModel)]="lastSeenAt" name="last_seen_at" />
+      </mat-form-field>
+
+      <!-- ACTION BUTTONS span full width -->
+      <div class="buttons">
+        <button mat-flat-button color="primary" (click)="onSubmit()">Save</button>
+        <button mat-button routerLink="/ships">Cancel</button>
+      </div>
+    </form>
+  </mat-card>
+</div>

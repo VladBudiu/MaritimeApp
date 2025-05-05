@@ -1,0 +1,58 @@
+<div class="page">
+    <mat-card class="port-card mat-elevation-z8">
+      <h1 class="title">Port Directory</h1>
+  
+      <!-- search -->
+      <mat-form-field appearance="outline" class="search-box">
+        <mat-label>Search by name</mat-label>
+        <input matInput [(ngModel)]="searchTerm" placeholder="e.g. Piraeus" />
+      </mat-form-field>
+  
+      <!-- table -->
+      <mat-table [dataSource]="filteredPorts" class="mat-elevation-z0">
+        <!-- Name -->
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+          <mat-cell *matCellDef="let p">{{ p.name }}</mat-cell>
+        </ng-container>
+  
+        <!-- Country -->
+        <ng-container matColumnDef="country">
+          <mat-header-cell *matHeaderCellDef>Country</mat-header-cell>
+          <mat-cell *matCellDef="let p">{{ p.countryName }}</mat-cell>
+        </ng-container>
+  
+        <!-- Actions -->
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let p">
+            <button
+              mat-icon-button
+              color="primary"
+              matTooltip="Details"
+              [routerLink]="[p.id]"
+            >
+              <mat-icon>info</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+  
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+  
+      <!-- add‑port FAB -->
+      <button
+        mat-fab
+        color="primary"
+        class="fab"
+        aria-label="Add port"
+        [routerLink]="['/ports/add']"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+  
+      <div *ngIf="error" class="error">{{ error }}</div>
+    </mat-card>
+  </div>
+  

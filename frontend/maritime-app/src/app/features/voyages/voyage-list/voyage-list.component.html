@@ -1,0 +1,98 @@
+<div class="page">
+    <mat-card class="ship-card mat-elevation-z8">
+      <h1 class="title">Voyages by Ship</h1>
+  
+      <!-- search -->
+      <mat-form-field appearance="outline" class="search-box">
+        <mat-label>Search by ship name</mat-label>
+        <input matInput [(ngModel)]="search" placeholder="e.g. Poseidon" />
+      </mat-form-field>
+  
+      <!-- accordion -->
+      <mat-accordion multi>
+        <mat-expansion-panel
+  *ngFor="let ship of filteredShips"
+  [expanded]="autoExpandShipId === ship.id"
+  (opened)="fetchVoyages(ship)">
+          <mat-expansion-panel-header>
+            <button mat-button class="ship-header">
+              <span class="ship-name">{{ ship.name }}</span>
+              <span class="ship-imo">| IMO: {{ ship.imoNumber?.toString() || '—' }}</span>
+              <mat-icon class="chevron" svgIcon="expand_more"></mat-icon>
+            </button>
+          </mat-expansion-panel-header>
+  
+          <!-- voyages list -->
+          <ng-container *ngIf="voyages[ship.id]; else loading">
+            <mat-list>
+                <mat-list-item *ngFor="let v of voyages[ship.id]">
+                    <div class="voyage-entry">
+                      <span class="voy">
+                        {{ v.startTime | date:'dd/MM/yyyy' }} • {{ v.departurePort }}, ({{ v.departureCountry }})
+                      </span>
+                      <span class="arrow">———&gt;</span>
+                      <span class="voy">
+                        {{ v.endTime | date:'dd/MM/yyyy' }} • {{ v.arrivalPort }}, ({{ v.arrivalCountry }})
+                      </span>
+                  
+                      <button mat-icon-button color="warn" (click)="deleteVoyage(ship.id, v.id)">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </div>
+                  </mat-list-item>
+                  
+            </mat-list>
+  
+            <!-- Add Voyage Section -->
+            <div class="add-voyage">
+              <button mat-button (click)="toggleForm(ship.id)">
+                <mat-icon>{{ isFormOpen(ship.id) ? 'close' : 'add' }}</mat-icon>
+                {{ isFormOpen(ship.id) ? 'Cancel' : 'Add Voyage' }}
+              </button>
+  
+              <form *ngIf="isFormOpen(ship.id)" (ngSubmit)="submitVoyage(ship.id)" #voyageForm="ngForm" class="voyage-form">
+                <mat-form-field appearance="outline">
+                  <mat-label>Departure Port</mat-label>
+                  <input matInput name="departurePort" [(ngModel)]="newVoyage.departurePort" required />
+                </mat-form-field>
+  
+                <mat-form-field appearance="outline">
+                  <mat-label>Start Date</mat-label>
+                  <input matInput [matDatepicker]="startPicker" name="startTime" [(ngModel)]="newVoyage.startTime" required />
+                  <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+                  <mat-datepicker #startPicker></mat-datepicker>
+                </mat-form-field>
+  
+                <mat-form-field appearance="outline">
+                  <mat-label>Arrival Port</mat-label>
+                  <input matInput name="arrivalPort" [(ngModel)]="newVoyage.arrivalPort" required />
+                </mat-form-field>
+  
+                <mat-form-field appearance="outline">
+                  <mat-label>End Date</mat-label>
+                  <input matInput [matDatepicker]="endPicker" name="endTime" [(ngModel)]="newVoyage.endTime" required />
+                  <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+                  <mat-datepicker #endPicker></mat-datepicker>
+                </mat-form-field>
+  
+                <button mat-raised-button color="primary" type="submit" [disabled]="!voyageForm.form.valid">
+                  Save
+                </button>
+              </form>
+            </div>
+  
+            <p *ngIf="!voyages[ship.id].length" class="empty">No voyages found.</p>
+          </ng-container>
+  
+          <ng-template #loading>
+            <div class="spinner-wrap" *ngIf="loadingVoyages[ship.id]">
+              <mat-spinner diameter="32"></mat-spinner>
+            </div>
+          </ng-template>
+        </mat-expansion-panel>
+      </mat-accordion>
+  
+      <div *ngIf="error" class="error">{{ error }}</div>
+    </mat-card>
+  </div>
+  

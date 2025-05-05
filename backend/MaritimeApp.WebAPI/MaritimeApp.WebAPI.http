@@ -1,0 +1,6 @@
+@MaritimeApp.WebAPI_HostAddress = http://localhost:5210
+
+GET {{MaritimeApp.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

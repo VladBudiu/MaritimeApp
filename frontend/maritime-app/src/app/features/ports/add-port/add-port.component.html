@@ -1,0 +1,27 @@
+<div class="page">
+    <mat-card class="form-card">
+      <h2 class="title">Add New Port</h2>
+  
+      <form (ngSubmit)="onSubmit()" class="form-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>Port Name</mat-label>
+          <input matInput [(ngModel)]="name" name="name" required />
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline">
+          <mat-label>Country</mat-label>
+          <input matInput [(ngModel)]="countryName" name="countryName" />
+        </mat-form-field>
+  
+        <div class="buttons">
+          <button mat-stroked-button color="warn" type="button" routerLink="/ports">
+            Cancel
+          </button>
+          <button mat-raised-button color="primary" type="submit">
+            Save
+          </button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+  
