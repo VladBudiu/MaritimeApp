@@ -3,7 +3,7 @@
     <h1 class="title">Add Ship</h1>
 
     <form (ngSubmit)="onSubmit()" class="form-grid">
-      <!-- name -->
+    
       <mat-form-field appearance="outline">
         <mat-label>Name</mat-label>
         <input matInput [(ngModel)]="name" name="name" required />
@@ -15,13 +15,13 @@
       </mat-form-field>
 
 
-      <!-- max speed -->
+     
       <mat-form-field appearance="outline">
         <mat-label>Max Speed (knots)</mat-label>
         <input matInput type="number" [(ngModel)]="maxSpeed" name="maxSpeed" required />
       </mat-form-field>
 
-      <!-- extend with more fields as desired -->
+    
 
       <div class="buttons">
         <button mat-flat-button color="primary" type="submit">

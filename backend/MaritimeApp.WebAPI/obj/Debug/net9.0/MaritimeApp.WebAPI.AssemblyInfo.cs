@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MaritimeApp.WebAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9ca6dcafe0647073b61397e2072648ce34c68279")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+114dff7eec36360b267c4f7fd37e61c96f79a3b9")]
 [assembly: System.Reflection.AssemblyProductAttribute("MaritimeApp.WebAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MaritimeApp.WebAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

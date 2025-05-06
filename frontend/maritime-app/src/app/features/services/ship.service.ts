@@ -31,8 +31,13 @@ export class ShipService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
-  // Optional: for charting speed over time, if you create a real endpoint for this later
   getShipSpeedOverTime(id: number): Observable<{ timestamp: string; speed: number }[]> {
     return this.http.get<{ timestamp: string; speed: number }[]>(`${this.apiUrl}/${id}/speed-history`);
   }
+
+  getShipLocations(id: number): Observable<{ latitude: number; longitude: number; timestamp: string }[]> {
+    return this.http.get<{ latitude: number; longitude: number; timestamp: string }[]>(`${this.apiUrl}/${id}/locations`);
+  }
+  
+
 }

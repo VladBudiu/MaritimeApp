@@ -51,11 +51,11 @@ export class VoyageListComponent implements OnInit {
   error: string | null = null;
   autoExpandShipId: number | null = null;
 
-  /** cache voyages per ship‑id */
+
   voyages: Record<number, Voyage[]> = {};
   loadingVoyages: Record<number, boolean> = {};
 
-  /** single active form */
+
   activeFormShipId: number | null = null;
 
   newVoyage = {
@@ -87,7 +87,7 @@ export class VoyageListComponent implements OnInit {
   
   
 
-  /** fetch voyages, unless already cached */
+  
   fetchVoyages(ship: Ship): void {
     if (this.voyages[ship.id] || this.loadingVoyages[ship.id]) return;
 
@@ -102,29 +102,28 @@ export class VoyageListComponent implements OnInit {
     });
   }
 
-  /** format date */
   format(dt?: string): string {
     return dt ? new Date(dt).toLocaleDateString() : '';
   }
 
-  /** filter ships by search term */
+ 
   get filteredShips(): Ship[] {
     return this.ships.filter(s =>
       s.name.toLowerCase().includes(this.search.toLowerCase())
     );
   }
 
-  /** toggle which form is open */
+ 
   toggleForm(shipId: number): void {
     this.activeFormShipId = this.activeFormShipId === shipId ? null : shipId;
   }
 
-  /** check if form is currently open */
+ 
   isFormOpen(shipId: number): boolean {
     return this.activeFormShipId === shipId;
   }
 
-  /** submit new voyage and reload that ship’s data */
+  
   submitVoyage(shipId: number): void {
     const voyagePayload = {
       ...this.newVoyage,
@@ -133,11 +132,10 @@ export class VoyageListComponent implements OnInit {
 
     this.voyageService.createVoyage(voyagePayload).subscribe({
       next: () => {
-        // Clear form and close
+       
         this.newVoyage = { departurePort: '', arrivalPort: '', startTime: '', endTime: '' };
         this.activeFormShipId = null;
 
-        // Force reload
         delete this.voyages[shipId];
         this.fetchVoyages({ id: shipId } as Ship);
       },
@@ -150,7 +148,7 @@ export class VoyageListComponent implements OnInit {
   
     this.voyageService.deleteVoyage(voyageId).subscribe({
       next: () => {
-        // Refresh voyages for this ship
+        
         delete this.voyages[shipId];
         this.fetchVoyages({ id: shipId } as Ship);
       },

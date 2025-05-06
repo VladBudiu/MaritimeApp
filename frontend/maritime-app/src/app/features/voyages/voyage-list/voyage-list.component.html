@@ -2,13 +2,11 @@
     <mat-card class="ship-card mat-elevation-z8">
       <h1 class="title">Voyages by Ship</h1>
   
-      <!-- search -->
       <mat-form-field appearance="outline" class="search-box">
         <mat-label>Search by ship name</mat-label>
         <input matInput [(ngModel)]="search" placeholder="e.g. Poseidon" />
       </mat-form-field>
   
-      <!-- accordion -->
       <mat-accordion multi>
         <mat-expansion-panel
   *ngFor="let ship of filteredShips"
@@ -22,7 +20,6 @@
             </button>
           </mat-expansion-panel-header>
   
-          <!-- voyages list -->
           <ng-container *ngIf="voyages[ship.id]; else loading">
             <mat-list>
                 <mat-list-item *ngFor="let v of voyages[ship.id]">
@@ -43,7 +40,7 @@
                   
             </mat-list>
   
-            <!-- Add Voyage Section -->
+            
             <div class="add-voyage">
               <button mat-button (click)="toggleForm(ship.id)">
                 <mat-icon>{{ isFormOpen(ship.id) ? 'close' : 'add' }}</mat-icon>

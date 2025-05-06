@@ -9,10 +9,16 @@ import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { PortService } from '../../services/port.service';
 import { FullDetailPort } from '../../models/port.model';
 import { Ship } from '../../models/ship.model';
+
+interface VisitedShip extends Ship {
+  lastDeparture?: string;
+}
 
 @Component({
   selector: 'app-port-detail',
@@ -27,16 +33,24 @@ import { Ship } from '../../models/ship.model';
     MatButtonModule,
     MatInputModule,
     MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   templateUrl: './port-detail.component.html',
   styleUrls: ['./port-detail.component.scss'],
 })
+
+
+
 export class PortDetailComponent implements OnInit {
   port: FullDetailPort | null = null;
   displayedColumns: string[] = ['imo', 'name', 'lastDeparture', 'actions'];
   newImo = '';
   saving = false;
   error: string | null = null;
+
+  filterStartDate: Date | null = null;
+  filterEndDate: Date | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -64,10 +78,22 @@ export class PortDetailComponent implements OnInit {
       .subscribe({
         next: () => {
           this.newImo = '';
-          this.loadPort(this.port!.id); // refresh
+          this.loadPort(this.port!.id); 
         },
         error: () => (this.error = 'Failed to add ship visit.'),
       })
       .add(() => (this.saving = false));
+  }
+
+  get filteredShips(): VisitedShip[] {
+    if (!this.port?.shipsVisited) return [];
+  
+    return (this.port.shipsVisited as VisitedShip[]).filter(ship => {
+      const departure = ship.lastDeparture ? new Date(ship.lastDeparture) : null;
+      if (!departure) return false;
+  
+      return (!this.filterStartDate || departure >= this.filterStartDate) &&
+             (!this.filterEndDate || departure <= this.filterEndDate);
+    });
   }
 }

@@ -1,62 +1,75 @@
 <div class="page" *ngIf="port">
-    <mat-card class="detail-card">
-      <h1>{{ port.name }}</h1>
-      <p *ngIf="port.countryName">Country: {{ port.countryName }}</p>
-  
-      <h2>Ships that visited</h2>
-  
-      <mat-table *ngIf="port.shipsVisited" [dataSource]="port.shipsVisited" class="mat-elevation-z0">
-  
-        <!-- IMO -->
-        <ng-container matColumnDef="imo">
-          <mat-header-cell *matHeaderCellDef>IMO</mat-header-cell>
-          <mat-cell *matCellDef="let s">{{ s.imoNumber }}</mat-cell>
-        </ng-container>
-  
-        <!-- Name -->
-        <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
-          <mat-cell *matCellDef="let s">{{ s.name }}</mat-cell>
-        </ng-container>
-  
-        <!-- Last Arrival -->
-        <ng-container matColumnDef="lastArrival">
-          <mat-header-cell *matHeaderCellDef>Last Arrival</mat-header-cell>
-          <mat-cell *matCellDef="let s">
-            {{ s.lastArrival ? (s.lastArrival | date: 'dd/MM/yyyy HH:mm') : '—' }}
-          </mat-cell>
-        </ng-container>
-  
-        <!-- Last Departure -->
-        <ng-container matColumnDef="lastDeparture">
-          <mat-header-cell *matHeaderCellDef>Last Departure</mat-header-cell>
-          <mat-cell *matCellDef="let s">
-            {{ s.lastDeparture ? (s.lastDeparture | date: 'dd/MM/yyyy') : 'Still Here' }}
-          </mat-cell>
-        </ng-container>
-  
-        <!-- Actions -->
-        <ng-container matColumnDef="actions">
-          <mat-header-cell *matHeaderCellDef></mat-header-cell>
-          <mat-cell *matCellDef="let s">
-            <a
-              mat-icon-button
-              color="primary"
-              [routerLink]="['/ships', s.id]"
-              matTooltip="Open ship"
-            >
-              <mat-icon>open_in_new</mat-icon>
-            </a>
-          </mat-cell>
-        </ng-container>
-  
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let r; columns: displayedColumns"></mat-row>
-      </mat-table>
-  
-      <ng-template #noShips>No ship visits yet.</ng-template>
-  
-      <div *ngIf="error" class="error">{{ error }}</div>
-    </mat-card>
-  </div>
-  
+  <mat-card class="detail-card">
+    <h1>{{ port.name }}</h1>
+    <p *ngIf="port.countryName">Country: {{ port.countryName }}</p>
+
+    <h2>Ships that visited</h2>
+
+    <div class="filter-row">
+      <mat-form-field appearance="outline">
+        <mat-label>From</mat-label>
+        <input matInput [matDatepicker]="startPicker" [(ngModel)]="filterStartDate" />
+        <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+        <mat-datepicker #startPicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>To</mat-label>
+        <input matInput [matDatepicker]="endPicker" [(ngModel)]="filterEndDate" />
+        <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+        <mat-datepicker #endPicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <mat-table *ngIf="filteredShips.length" [dataSource]="filteredShips" class="mat-elevation-z0">
+      <ng-container matColumnDef="imo">
+        <mat-header-cell *matHeaderCellDef>IMO</mat-header-cell>
+        <mat-cell *matCellDef="let s">{{ s.imoNumber }}</mat-cell>
+      </ng-container>
+
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+        <mat-cell *matCellDef="let s">{{ s.name }}</mat-cell>
+      </ng-container>
+
+
+      <ng-container matColumnDef="lastArrival">
+        <mat-header-cell *matHeaderCellDef>Last Arrival</mat-header-cell>
+        <mat-cell *matCellDef="let s">
+          {{ s.lastArrival ? (s.lastArrival | date: 'dd/MM/yyyy HH:mm') : '—' }}
+        </mat-cell>
+      </ng-container>
+
+ 
+      <ng-container matColumnDef="lastDeparture">
+        <mat-header-cell *matHeaderCellDef>Last Departure</mat-header-cell>
+        <mat-cell *matCellDef="let s">
+          {{ s.lastDeparture ? (s.lastDeparture | date: 'dd/MM/yyyy') : 'Still Here' }}
+        </mat-cell>
+      </ng-container>
+
+ 
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let s">
+          <a
+            mat-icon-button
+            color="primary"
+            [routerLink]="['/ships', s.id]"
+            matTooltip="Open ship"
+          >
+            <mat-icon>open_in_new</mat-icon>
+          </a>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+
+    <ng-template #noShips>No ship visits yet.</ng-template>
+
+    <div *ngIf="error" class="error">{{ error }}</div>
+  </mat-card>
+</div>

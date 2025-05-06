@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "HzvHeKjAEUbIKKydyNW1tECxIh5z0lhlzD4APyRaJdA=",
+  "Source": "MaritimeApp.WebAPI",
+  "BasePath": "_content/MaritimeApp.WebAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

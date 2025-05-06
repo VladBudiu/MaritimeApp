@@ -34,6 +34,9 @@ D:\Jobs\NAPA group\backend\MaritimeApp.WebAPI\bin\Debug\net9.0\Microsoft.OpenApi
 D:\Jobs\NAPA group\backend\MaritimeApp.WebAPI\bin\Debug\net9.0\Mono.TextTemplating.dll
 D:\Jobs\NAPA group\backend\MaritimeApp.WebAPI\bin\Debug\net9.0\Npgsql.dll
 D:\Jobs\NAPA group\backend\MaritimeApp.WebAPI\bin\Debug\net9.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\Jobs\NAPA group\backend\MaritimeApp.WebAPI\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\Jobs\NAPA group\backend\MaritimeApp.WebAPI\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Jobs\NAPA group\backend\MaritimeApp.WebAPI\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 D:\Jobs\NAPA group\backend\MaritimeApp.WebAPI\bin\Debug\net9.0\System.CodeDom.dll
 D:\Jobs\NAPA group\backend\MaritimeApp.WebAPI\bin\Debug\net9.0\System.Composition.AttributedModel.dll
 D:\Jobs\NAPA group\backend\MaritimeApp.WebAPI\bin\Debug\net9.0\System.Composition.Convention.dll
@@ -135,6 +138,3 @@ D:\Jobs\NAPA group\backend\MaritimeApp.WebAPI\obj\Debug\net9.0\refint\MaritimeAp
 D:\Jobs\NAPA group\backend\MaritimeApp.WebAPI\obj\Debug\net9.0\MaritimeApp.WebAPI.pdb
 D:\Jobs\NAPA group\backend\MaritimeApp.WebAPI\obj\Debug\net9.0\MaritimeApp.WebAPI.genruntimeconfig.cache
 D:\Jobs\NAPA group\backend\MaritimeApp.WebAPI\obj\Debug\net9.0\ref\MaritimeApp.WebAPI.dll
-D:\Jobs\NAPA group\backend\MaritimeApp.WebAPI\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
-D:\Jobs\NAPA group\backend\MaritimeApp.WebAPI\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-D:\Jobs\NAPA group\backend\MaritimeApp.WebAPI\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll

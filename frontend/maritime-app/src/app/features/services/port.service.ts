@@ -7,11 +7,11 @@ import { FullDetailPort, Port } from '../models/port.model';
   providedIn: 'root',
 })
 export class PortService {
-  private apiUrl = 'http://localhost:5210/api/ports'; // adjust later
+  private apiUrl = 'http://localhost:5210/api/ports';
 
   constructor(private http: HttpClient) {}
 
-  /* === list + CRUD === */
+
   getPorts(): Observable<Port[]> {
     return this.http.get<Port[]>(this.apiUrl);
   }
@@ -24,10 +24,10 @@ export class PortService {
     return this.http.post<FullDetailPort>(this.apiUrl, port);
   }
 
-  /* === ships‑in‑port === */
+
   getShipsAtPort(id: number) {
     return this.http.get(`${this.apiUrl}/${id}/ships`);
-    // expected: Ship[]
+  
   }
 
   addShipVisit(portId: number, imoNumber: string) {
@@ -35,6 +35,5 @@ export class PortService {
       `${this.apiUrl}/${portId}/ships`,
       { imoNumber }
     );
-    // expected: FullDetailPort or updated list
   }
 }

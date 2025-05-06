@@ -11,14 +11,12 @@ public static class ServiceRegistration
 {
     public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
     {
-        // Register EF Core DbContext
         services.AddDbContext<MaritimeDbContext>(options =>
             options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
 
-        // Register generic repository
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
-        // Register entity-specific repositories
+
         services.AddScoped<ICountryRepository, CountryRepository>();
         services.AddScoped<IPortRepository, PortRepository>();
         services.AddScoped<IShipTypeRepository, ShipTypeRepository>();

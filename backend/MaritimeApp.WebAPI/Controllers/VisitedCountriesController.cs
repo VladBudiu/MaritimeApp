@@ -16,7 +16,6 @@ public class VisitedCountriesController : ControllerBase
         _db = db;
     }
 
-    // GET: /api/visitedcountries/lastyear/8
     [HttpGet("lastyear/{shipId:int}")]
     public async Task<ActionResult<IEnumerable<object>>> GetVisitedCountriesInLastYear(int shipId)
     {

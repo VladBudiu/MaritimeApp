@@ -5,11 +5,10 @@ import { Voyage } from '../models/voyage.model';
 
 @Injectable({ providedIn: 'root' })
 export class VoyageService {
-  private readonly baseUrl = 'http://localhost:5210/api';   // adjust if needed
+  private readonly baseUrl = 'http://localhost:5210/api';   
 
   constructor(private http: HttpClient) {}
 
-  /** GET /api/ships/{id}/voyages  – backend already returns voyages per ship */
   getVoyagesByShip(shipId: number): Observable<Voyage[]> {
     return this.http.get<Voyage[]>(`${this.baseUrl}/ships/${shipId}/voyages`);
   }

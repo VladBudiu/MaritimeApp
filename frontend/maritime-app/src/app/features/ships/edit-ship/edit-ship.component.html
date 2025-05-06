@@ -3,7 +3,7 @@
     <h1 class="title">{{ isEdit ? 'Edit Ship' : 'Add Ship' }}</h1>
 
     <form class="form-grid" (ngSubmit)="onSubmit()">
-      <!-- COLUMN 1 -->
+     
       <mat-form-field appearance="outline">
         <mat-label>Name</mat-label>
         <input matInput [(ngModel)]="name" name="name" required />
@@ -39,7 +39,7 @@
         <input matInput type="number" [(ngModel)]="yearBuilt" name="yearBuilt" />
       </mat-form-field>
 
-      <!-- COLUMN 2 -->
+     
       <mat-form-field appearance="outline">
         <mat-label>Max Speed (knots)</mat-label>
         <input matInput type="number" [(ngModel)]="maxSpeed" name="maxSpeed" required/>
@@ -85,7 +85,8 @@
         <input matInput type="datetime-local" [(ngModel)]="lastSeenAt" name="last_seen_at" />
       </mat-form-field>
 
-      <!-- ACTION BUTTONS span full width -->
+
+      
       <div class="buttons">
         <button mat-flat-button color="primary" (click)="onSubmit()">Save</button>
         <button mat-button routerLink="/ships">Cancel</button>

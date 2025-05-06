@@ -25,7 +25,6 @@ public class ShipsController : ControllerBase
             .Include(s => s.Specification)
             .ToListAsync();
 
-        // Console.WriteLine($"Ship found: {ships}");
         foreach (var ship in ships)
         {
             Console.WriteLine($"Ship found: {ship}");
@@ -155,11 +154,11 @@ public class ShipsController : ControllerBase
         if (ship == null)
             return NotFound();
 
-        // 1. Update basic Ship fields
+       
         ship.Name = dto.Name;
         ship.ImoNumber = dto.ImoNumber;
 
-        // Optional: update ShipType via lookup
+       
         if (!string.IsNullOrWhiteSpace(dto.ShipType))
         {
             var type = await _dbContext.ShipTypes.FirstOrDefaultAsync(t => t.TypeName == dto.ShipType);
@@ -167,7 +166,7 @@ public class ShipsController : ControllerBase
                 ship.ShipTypeId = type.Id;
         }
 
-        // Optional: update FlagCountry via lookup
+       
         if (!string.IsNullOrWhiteSpace(dto.FlagCountry))
         {
             var country = await _dbContext.Countries.FirstOrDefaultAsync(c => c.Name == dto.FlagCountry);
@@ -175,7 +174,7 @@ public class ShipsController : ControllerBase
                 ship.FlagCountryId = country.Id;
         }
 
-        // 2. Update or create Specification
+       
         var spec = await _dbContext.ShipSpecifications.FirstOrDefaultAsync(s => s.ShipId == id);
         if (spec == null)
         {
@@ -190,7 +189,7 @@ public class ShipsController : ControllerBase
         spec.BeamMeters = dto.BeamMeters;
         spec.DraftMeters = dto.DraftMeters;
 
-        // 3. Update or insert Owner/Operator relationships
+       
         var companyRelations = await _dbContext.ShipCompanyRelations
             .Where(r => r.ShipId == id)
             .ToListAsync();
@@ -205,7 +204,7 @@ public class ShipsController : ControllerBase
                 {
                     company = new Company { Name = companyName };
                     _dbContext.Companies.Add(company);
-                    await _dbContext.SaveChangesAsync(); // Ensure ID is set
+                    await _dbContext.SaveChangesAsync(); 
                 }
 
                 var relation = companyRelations.FirstOrDefault(r => r.Role == role);
@@ -220,12 +219,12 @@ public class ShipsController : ControllerBase
                 }
                 else
                 {
-                    relation.CompanyId = company.Id; // update existing
+                    relation.CompanyId = company.Id; 
                 }
             }
         }
 
-    // 4. Add new location log (append-only)
+
     if (dto.LastSeenAt.HasValue && dto.LastKnownLat.HasValue && dto.LastKnownLon.HasValue)
     {
         var locationLog = new ShipLocationLog
@@ -295,5 +294,22 @@ public class ShipsController : ControllerBase
 
         return Ok(result);
     }
+
+    [HttpGet("{id}/locations")]
+    public async Task<ActionResult<IEnumerable<object>>> GetShipLocationHistory(int id)
+    {
+        var locations = await _dbContext.ShipLocationLogs
+            .Where(log => log.ShipId == id)
+            .OrderBy(log => log.RecordedAt)
+            .Select(log => new {
+                Latitude = log.Latitude,
+                Longitude = log.Longitude,
+                Timestamp = log.RecordedAt
+            })
+            .ToListAsync();
+
+        return Ok(locations);
+    }
+
 
 }

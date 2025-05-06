@@ -1,0 +1,27 @@
+<div class="chart-card">
+  <div class="chart-header">
+    <h2 class="chart-title"> Ship Track – {{ showLatitude ? 'Latitude' : 'Longitude' }} vs Time</h2>
+    <div class="chart-buttons">
+      <button (click)="toggleAxis()" class="chart-btn">Switch to {{ showLatitude ? 'Longitude' : 'Latitude' }}</button>
+      <button (click)="exportChart()" class="chart-btn">Export as Image</button>
+    </div>
+  </div>
+
+  <canvas baseChart
+          [data]="chartData"
+          type="scatter"
+          [options]="chartOptions"
+          class="chart-canvas"
+          #scatterCanvas>
+  </canvas>
+</div>
+
+<div class="chart-card">
+  <h2 class="chart-title"> Max Speed Comparison</h2>
+  <canvas baseChart
+          [data]="barChartData"
+          type="bar"
+          [options]="barChartOptions"
+          class="chart-canvas">
+  </canvas>
+</div>

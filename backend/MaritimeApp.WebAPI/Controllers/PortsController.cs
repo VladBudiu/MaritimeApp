@@ -19,10 +19,6 @@ public class PortsController : ControllerBase
         _dbContext = dbContext;
     }
 
-    /* ────────────────────────────────
-       GET  /api/ports
-       overview list (Id, Name, Country, VoyagesCount)
-    ──────────────────────────────────*/
     [HttpGet]
     public async Task<ActionResult<IEnumerable<PortDto>>> GetAll()
     {
@@ -42,10 +38,7 @@ public class PortsController : ControllerBase
         return Ok(result);
     }
 
-    /* ────────────────────────────────
-       GET  /api/ports/{id}
-       full details + list of ships that ever visited
-    ──────────────────────────────────*/
+
     [HttpGet("{id:int}")]
     public async Task<ActionResult<object>> GetById(int id)
     {
@@ -84,10 +77,7 @@ public class PortsController : ControllerBase
     }
 
 
-    /* ────────────────────────────────
-       GET  /api/ports/{id}/ships
-       (if Angular uses separate call)
-    ──────────────────────────────────*/
+  
     [HttpGet("{id:int}/ships")]
     public async Task<ActionResult<IEnumerable<ShipSummaryDto>>> GetShips(int id)
     {
@@ -103,17 +93,13 @@ public class PortsController : ControllerBase
         return Ok(result);
     }
 
-    /* ────────────────────────────────
-       POST /api/ports
-       body: { "name": "...", "countryName": "..." }
-    ──────────────────────────────────*/
+   
     [HttpPost]
     public async Task<ActionResult<PortDto>> Create(CreatePortDto dto)
     {
         if (string.IsNullOrWhiteSpace(dto.Name))
             return BadRequest("Name is required.");
 
-        // ensure Country row exists (or allow null)
         Country? country = null;
         if (!string.IsNullOrWhiteSpace(dto.CountryName))
         {
@@ -124,14 +110,14 @@ public class PortsController : ControllerBase
             {
                 country = new Country { Name = dto.CountryName! };
                 _dbContext.Countries.Add(country);
-                await _dbContext.SaveChangesAsync(); // get ID
+                await _dbContext.SaveChangesAsync();
             }
         }
 
         var port = new Port
         {
             Name       = dto.Name,
-            CountryId  = country?.Id ?? 0,   // 0 if unknown / not supplied
+            CountryId  = country?.Id ?? 0,   
             Country    = country
         };
 
@@ -147,10 +133,7 @@ public class PortsController : ControllerBase
         return CreatedAtAction(nameof(GetById), new { id = port.Id }, result);
     }
 
-    /* ────────────────────────────────
-       DELETE /api/ports/{id}
-       (optional, mirrors ShipsController style)
-    ──────────────────────────────────*/
+   
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete(int id)
     {

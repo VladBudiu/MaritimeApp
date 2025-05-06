@@ -15,9 +15,9 @@ import { RouterModule } from '@angular/router';
     MatIconModule,
     MatSidenavModule,
     MatListModule,
-    RouterModule, // Needed for routerLink
+    RouterModule, 
   ],
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss'] // ✅ fixed
+  styleUrls: ['./navbar.component.scss'] 
 })
 export class NavbarComponent {}

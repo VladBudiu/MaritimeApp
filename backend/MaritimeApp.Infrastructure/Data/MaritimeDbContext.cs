@@ -24,8 +24,6 @@ public class MaritimeDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-
-        // ✅ Table & column name fixes (match lowercase PostgreSQL schema)
         modelBuilder.Entity<Ship>(entity =>
         {
             entity.ToTable("ship");

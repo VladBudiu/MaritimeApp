@@ -10,5 +10,5 @@ public class ShipCompanyRelation
     public int CompanyId { get; set; }
     public Company Company { get; set; } = null!;
 
-    public string Role { get; set; } = null!;  // "Owner" or "Operator"
+    public string Role { get; set; } = null!; 
 }
